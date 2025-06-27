@@ -1,11 +1,11 @@
-import NavList from "../../component/NavList";
 import ProductDetailContainer from "./component/ProductDetailContainer";
+import TopNavbar from "../../component/TopNavbar";
 
 export default function ProductDetailPage() {
   return (
     <>
-      <NavList />
-      <ProductDetailContainer />
+      <TopNavbar/>
+      <ProductDetailContainer/>
     </>
   );
 }

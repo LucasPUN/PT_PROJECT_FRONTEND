@@ -1,4 +1,4 @@
-import { Button, Stack } from "react-bootstrap";
+import {Button, Stack} from "react-bootstrap";
 
 type Props = {
   quantity: number;
@@ -7,17 +7,15 @@ type Props = {
 };
 
 export default function QuantitySelector({
-  quantity,
-  qurantityMinusOne,
-  quantityPlusOne,
-}: Props) {
+                                           quantity,
+                                           qurantityMinusOne,
+                                           quantityPlusOne,
+                                         }: Props) {
   return (
     <Stack direction="horizontal">
-      <Button onClick={quantityPlusOne}>+</Button>
-
-      {quantity}
-
       <Button onClick={qurantityMinusOne}>-</Button>
+      {quantity}
+      <Button onClick={quantityPlusOne}>+</Button>
     </Stack>
   );
 }

@@ -16,6 +16,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as ThankyouIndexImport } from './routes/thankyou/index'
 import { Route as ShoppingcartIndexImport } from './routes/shoppingcart/index'
 import { Route as LoginIndexImport } from './routes/login/index'
+import { Route as ErrorIndexImport } from './routes/error/index'
 import { Route as ProductPidImport } from './routes/product/$pid'
 import { Route as CheckoutTransactionIdImport } from './routes/checkout/$transactionId'
 
@@ -48,6 +49,12 @@ const ShoppingcartIndexRoute = ShoppingcartIndexImport.update({
 const LoginIndexRoute = LoginIndexImport.update({
   id: '/login/',
   path: '/login/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ErrorIndexRoute = ErrorIndexImport.update({
+  id: '/error/',
+  path: '/error/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -95,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductPidImport
       parentRoute: typeof rootRoute
     }
+    '/error/': {
+      id: '/error/'
+      path: '/error'
+      fullPath: '/error'
+      preLoaderRoute: typeof ErrorIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/login/': {
       id: '/login/'
       path: '/login'
@@ -126,6 +140,7 @@ export interface FileRoutesByFullPath {
   '/*': typeof Route
   '/checkout/$transactionId': typeof CheckoutTransactionIdRoute
   '/product/$pid': typeof ProductPidRoute
+  '/error': typeof ErrorIndexRoute
   '/login': typeof LoginIndexRoute
   '/shoppingcart': typeof ShoppingcartIndexRoute
   '/thankyou': typeof ThankyouIndexRoute
@@ -136,6 +151,7 @@ export interface FileRoutesByTo {
   '/*': typeof Route
   '/checkout/$transactionId': typeof CheckoutTransactionIdRoute
   '/product/$pid': typeof ProductPidRoute
+  '/error': typeof ErrorIndexRoute
   '/login': typeof LoginIndexRoute
   '/shoppingcart': typeof ShoppingcartIndexRoute
   '/thankyou': typeof ThankyouIndexRoute
@@ -147,6 +163,7 @@ export interface FileRoutesById {
   '/*': typeof Route
   '/checkout/$transactionId': typeof CheckoutTransactionIdRoute
   '/product/$pid': typeof ProductPidRoute
+  '/error/': typeof ErrorIndexRoute
   '/login/': typeof LoginIndexRoute
   '/shoppingcart/': typeof ShoppingcartIndexRoute
   '/thankyou/': typeof ThankyouIndexRoute
@@ -159,6 +176,7 @@ export interface FileRouteTypes {
     | '/*'
     | '/checkout/$transactionId'
     | '/product/$pid'
+    | '/error'
     | '/login'
     | '/shoppingcart'
     | '/thankyou'
@@ -168,6 +186,7 @@ export interface FileRouteTypes {
     | '/*'
     | '/checkout/$transactionId'
     | '/product/$pid'
+    | '/error'
     | '/login'
     | '/shoppingcart'
     | '/thankyou'
@@ -177,6 +196,7 @@ export interface FileRouteTypes {
     | '/*'
     | '/checkout/$transactionId'
     | '/product/$pid'
+    | '/error/'
     | '/login/'
     | '/shoppingcart/'
     | '/thankyou/'
@@ -188,6 +208,7 @@ export interface RootRouteChildren {
   Route: typeof Route
   CheckoutTransactionIdRoute: typeof CheckoutTransactionIdRoute
   ProductPidRoute: typeof ProductPidRoute
+  ErrorIndexRoute: typeof ErrorIndexRoute
   LoginIndexRoute: typeof LoginIndexRoute
   ShoppingcartIndexRoute: typeof ShoppingcartIndexRoute
   ThankyouIndexRoute: typeof ThankyouIndexRoute
@@ -198,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   Route: Route,
   CheckoutTransactionIdRoute: CheckoutTransactionIdRoute,
   ProductPidRoute: ProductPidRoute,
+  ErrorIndexRoute: ErrorIndexRoute,
   LoginIndexRoute: LoginIndexRoute,
   ShoppingcartIndexRoute: ShoppingcartIndexRoute,
   ThankyouIndexRoute: ThankyouIndexRoute,
@@ -217,6 +239,7 @@ export const routeTree = rootRoute
         "/*",
         "/checkout/$transactionId",
         "/product/$pid",
+        "/error/",
         "/login/",
         "/shoppingcart/",
         "/thankyou/"
@@ -233,6 +256,9 @@ export const routeTree = rootRoute
     },
     "/product/$pid": {
       "filePath": "product/$pid.tsx"
+    },
+    "/error/": {
+      "filePath": "error/index.tsx"
     },
     "/login/": {
       "filePath": "login/index.tsx"
